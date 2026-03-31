@@ -1,4 +1,4 @@
-import { SimpleReviewerDTO } from '../../revewer/dto/reviewer.dto.js';
+import { SimpleReviewerDTO } from '../../reviewer/dto/reviewer.dto.js';
 import { SimpleRestaurantDTO } from '../../restaurant/dto/restaurant.dto.js';
 
 export interface SimpleRevewDTO {

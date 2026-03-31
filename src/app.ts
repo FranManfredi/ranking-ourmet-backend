@@ -1,7 +1,7 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import restaurantRoutes from './domains/restaurant/routes/restaurant.routes.js';
-import reviewerRoutes from './domains/revewer/routes/reviewer.routes.js';
+import reviewerRoutes from './domains/reviewer/routes/reviewer.routes.js';
 import revewRoutes from './domains/revew/routes/revew.routes.js';
 
 dotenv.config();
