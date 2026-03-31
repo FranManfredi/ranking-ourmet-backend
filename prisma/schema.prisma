@@ -29,7 +29,7 @@ model Review {
 
   // ratings
   foodRating     Float @default(0)
-  veberageRating Float @default(0)
+  beverageRating Float @default(0)
   serviceRating  Float @default(0)
   valueRating    Float @default(0)
   ambianceRating Float @default(0)

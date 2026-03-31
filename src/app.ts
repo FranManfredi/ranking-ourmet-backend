@@ -1,6 +1,8 @@
 import express, { Express, Request, Response } from 'express';
 import dotenv from 'dotenv';
 import restaurantRoutes from './domains/restaurant/routes/restaurant.routes.js';
+import reviewerRoutes from './domains/revewer/routes/reviewer.routes.js';
+import revewRoutes from './domains/revew/routes/revew.routes.js';
 
 dotenv.config();
 
@@ -14,7 +16,9 @@ app.get('/', (req: Request, res: Response) => {
   res.json({ message: 'Welcome to Ranking Gourmet API' });
 });
 
-// Restaurant Routes
+// Routes
 app.use('/api/restaurants', restaurantRoutes);
+app.use('/api/reviewers', reviewerRoutes);
+app.use('/api/reviews', revewRoutes);
 
 export default app;
