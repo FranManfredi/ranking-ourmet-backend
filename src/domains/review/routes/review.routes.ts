@@ -1,8 +1,8 @@
 import { Router } from 'express';
-import { RevewController } from '../controllers/revew.controller.js';
+import { ReviewController } from '../controllers/review.controller.js';
 
 const router = Router();
-const controller = new RevewController();
+const controller = new ReviewController();
 
 router.get('/', controller.getAll);
 router.get('/:id', controller.getById);

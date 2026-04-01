@@ -1,14 +1,10 @@
-import {ReviewWithReviewerDTO} from "../../revew/dto/revew.dto.js";
+import { SimpleRestaurantDTO } from '../../shared/dto/common.dto.js';
+import { ReviewWithDetailsDTO } from '../../review/dto/review.dto.js';
 
-export interface SimpleRestaurantDTO {
-  id: number;
-  name: string;
-  createdAt: Date;
-  updatedAt: Date;
-}
+export { SimpleRestaurantDTO };
 
 export interface RestaurantWithReviewsDTO extends SimpleRestaurantDTO {
-  reviews: ReviewWithReviewerDTO[];
+  reviews: ReviewWithDetailsDTO[];
 }
 
 export interface CreateRestaurantDTO {

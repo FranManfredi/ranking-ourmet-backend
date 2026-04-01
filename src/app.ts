@@ -1,10 +1,7 @@
 import express, { Express, Request, Response } from 'express';
-import dotenv from 'dotenv';
 import restaurantRoutes from './domains/restaurant/routes/restaurant.routes.js';
 import reviewerRoutes from './domains/reviewer/routes/reviewer.routes.js';
-import revewRoutes from './domains/revew/routes/revew.routes.js';
-
-dotenv.config();
+import reviewRoutes from './domains/review/routes/review.routes.js';
 
 const app: Express = express();
 
@@ -19,6 +16,6 @@ app.get('/', (req: Request, res: Response) => {
 // Routes
 app.use('/api/restaurants', restaurantRoutes);
 app.use('/api/reviewers', reviewerRoutes);
-app.use('/api/reviews', revewRoutes);
+app.use('/api/reviews', reviewRoutes);
 
 export default app;

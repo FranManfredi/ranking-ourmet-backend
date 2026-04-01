@@ -1,7 +1,7 @@
 import prisma from '../../../lib/prisma.js';
-import { CreateRevewDTO, UpdateRevewDTO } from '../dto/revew.dto.js';
+import { CreateReviewDTO, UpdateReviewDTO } from '../dto/review.dto.js';
 
-export class RevewRepository {
+export class ReviewRepository {
   async findAll() {
     return prisma.review.findMany({
       include: {
@@ -21,13 +21,13 @@ export class RevewRepository {
     });
   }
 
-  async create(data: CreateRevewDTO) {
+  async create(data: CreateReviewDTO) {
     return prisma.review.create({
       data
     });
   }
 
-  async update(id: number, data: UpdateRevewDTO) {
+  async update(id: number, data: UpdateReviewDTO) {
     return prisma.review.update({
       where: { id },
       data

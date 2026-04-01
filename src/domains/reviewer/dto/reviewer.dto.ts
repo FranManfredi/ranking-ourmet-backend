@@ -1,13 +1,9 @@
-import { SimpleRevewDTO } from '../../revew/dto/revew.dto.js';
+import { SimpleReviewerDTO, SimpleReviewDTO } from '../../shared/dto/common.dto.js';
 
-export interface SimpleReviewerDTO {
-  id: number;
-  name: string;
-  surname: string;
-}
+export { SimpleReviewerDTO };
 
 export interface ReviewerWithReviewsDTO extends SimpleReviewerDTO {
-  reviews: SimpleRevewDTO[];
+  reviews: SimpleReviewDTO[];
 }
 
 export interface CreateReviewerDTO {
