@@ -1,16 +1,18 @@
 import { SimpleRestaurantDTO } from '../../shared/dto/common.dto.js';
-import { ReviewWithDetailsDTO } from '../../review/dto/review.dto.js';
+import { SimpleVisitDTO } from '../../shared/dto/common.dto.js';
 
 export { SimpleRestaurantDTO };
 
-export interface RestaurantWithReviewsDTO extends SimpleRestaurantDTO {
-  reviews: ReviewWithDetailsDTO[];
+export interface RestaurantWithVisitsDTO extends SimpleRestaurantDTO {
+  visits: SimpleVisitDTO[];
 }
 
 export interface CreateRestaurantDTO {
   name: string;
+  address: string;
 }
 
 export interface UpdateRestaurantDTO {
   name?: string;
+  address?: string;
 }

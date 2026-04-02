@@ -1,34 +1,34 @@
 import { Router } from 'express';
-import { ReviewerController } from '../controllers/reviewer.controller.js';
+import { VisitController } from '../controllers/visit.controller.js';
 
 const router = Router();
-const controller = new ReviewerController();
+const controller = new VisitController();
 
 /**
  * @swagger
  * tags:
- *   name: Reviewers
- *   description: Reviewer management
+ *   name: Visits
+ *   description: Visit management
  */
 
 /**
  * @swagger
- * /api/reviewers:
+ * /api/visits:
  *   get:
- *     summary: Retrieve a list of reviewers
- *     tags: [Reviewers]
+ *     summary: Retrieve a list of visits
+ *     tags: [Visits]
  *     responses:
  *       200:
- *         description: A list of reviewers.
+ *         description: A list of visits.
  */
 router.get('/', controller.getAll);
 
 /**
  * @swagger
- * /api/reviewers/{id}:
+ * /api/visits/{id}:
  *   get:
- *     summary: Get a reviewer by ID
- *     tags: [Reviewers]
+ *     summary: Get a visit by ID
+ *     tags: [Visits]
  *     parameters:
  *       - in: path
  *         name: id
@@ -37,16 +37,16 @@ router.get('/', controller.getAll);
  *           type: integer
  *     responses:
  *       200:
- *         description: Reviewer data
+ *         description: Visit data
  */
 router.get('/:id', controller.getById);
 
 /**
  * @swagger
- * /api/reviewers:
+ * /api/visits:
  *   post:
- *     summary: Create a new reviewer
- *     tags: [Reviewers]
+ *     summary: Create a new visit
+ *     tags: [Visits]
  *     requestBody:
  *       required: true
  *       content:
@@ -54,11 +54,10 @@ router.get('/:id', controller.getById);
  *           schema:
  *             type: object
  *             required:
- *               - name
- *               - surname
+ *               - restaurantId
  *             properties:
- *               name: { type: string }
- *               surname: { type: string }
+ *               restaurantId: { type: integer }
+ *               visitedAt: { type: string, format: date-time }
  *     responses:
  *       201:
  *         description: Created
@@ -67,10 +66,10 @@ router.post('/', controller.create);
 
 /**
  * @swagger
- * /api/reviewers/{id}:
+ * /api/visits/{id}:
  *   patch:
- *     summary: Update a reviewer
- *     tags: [Reviewers]
+ *     summary: Update a visit
+ *     tags: [Visits]
  *     parameters:
  *       - in: path
  *         name: id
@@ -83,8 +82,7 @@ router.post('/', controller.create);
  *           schema:
  *             type: object
  *             properties:
- *               name: { type: string }
- *               surname: { type: string }
+ *               visitedAt: { type: string, format: date-time }
  *     responses:
  *       200:
  *         description: Updated
@@ -93,10 +91,10 @@ router.patch('/:id', controller.update);
 
 /**
  * @swagger
- * /api/reviewers/{id}:
+ * /api/visits/{id}:
  *   delete:
- *     summary: Delete a reviewer
- *     tags: [Reviewers]
+ *     summary: Delete a visit
+ *     tags: [Visits]
  *     parameters:
  *       - in: path
  *         name: id

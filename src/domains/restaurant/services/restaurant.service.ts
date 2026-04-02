@@ -1,17 +1,17 @@
 import { RestaurantRepository } from '../repositories/restaurant.repository.js';
-import { CreateRestaurantDTO, UpdateRestaurantDTO, RestaurantWithReviewsDTO, SimpleRestaurantDTO } from '../dto/restaurant.dto.js';
+import { CreateRestaurantDTO, UpdateRestaurantDTO, RestaurantWithVisitsDTO, SimpleRestaurantDTO } from '../dto/restaurant.dto.js';
 
 export class RestaurantService {
   private repository = new RestaurantRepository();
 
-  async getAll(): Promise<RestaurantWithReviewsDTO[]> {
-    return await this.repository.findAll() as unknown as Promise<RestaurantWithReviewsDTO[]>;
+  async getAll(): Promise<RestaurantWithVisitsDTO[]> {
+    return await this.repository.findAll() as unknown as Promise<RestaurantWithVisitsDTO[]>;
   }
 
-  async getById(id: number): Promise<RestaurantWithReviewsDTO> {
+  async getById(id: number): Promise<RestaurantWithVisitsDTO> {
     const restaurant = await this.repository.findById(id);
     if (!restaurant) throw new Error('Restaurant not found');
-    return restaurant as unknown as RestaurantWithReviewsDTO;
+    return restaurant as unknown as RestaurantWithVisitsDTO;
   }
 
   async create(data: CreateRestaurantDTO): Promise<SimpleRestaurantDTO> {

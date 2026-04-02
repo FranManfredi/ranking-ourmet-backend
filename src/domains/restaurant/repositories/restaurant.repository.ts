@@ -5,11 +5,7 @@ export class RestaurantRepository {
   async findAll() {
     return prisma.restaurant.findMany({
       include: {
-        reviews: {
-          include: {
-            reviewer: true
-          }
-        }
+        visits: true
       }
     });
   }
@@ -18,11 +14,7 @@ export class RestaurantRepository {
     return prisma.restaurant.findUnique({
       where: { id },
       include: {
-        reviews: {
-          include: {
-            reviewer: true
-          }
-        }
+        visits: true
       }
     });
   }

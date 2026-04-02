@@ -9,7 +9,8 @@ datasource db {
 model Restaurant {
   id        Int      @id @default(autoincrement())
   name      String
-  reviews   Review[]
+  address   String
+  visits    Visit[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -21,10 +22,16 @@ model Reviewer {
   reviews Review[]
 }
 
+model Visit {
+  id           Int        @id @default(autoincrement())
+  visitedAt    DateTime   @default(now())
+  reviews      Review[]
+  restaurantId Int
+  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
+}
+
 model Review {
-  id         Int      @id @default(autoincrement())
-  reviewerId Int
-  reviewer   Reviewer @relation(fields: [reviewerId], references: [id])
+  id Int @id @default(autoincrement())
 
   // ratings
   foodRating     Float @default(0)
@@ -34,7 +41,9 @@ model Review {
   ambianceRating Float @default(0)
   // end ratings
 
-  restaurantId Int
-  restaurant   Restaurant @relation(fields: [restaurantId], references: [id])
-  createdAt    DateTime   @default(now())
+  reviewerId Int
+  reviewer   Reviewer @relation(fields: [reviewerId], references: [id])
+  visitId    Int
+  visit      Visit    @relation(fields: [visitId], references: [id])
+  createdAt  DateTime @default(now())
 }

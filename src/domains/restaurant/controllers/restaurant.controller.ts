@@ -1,15 +1,16 @@
 import { Request, Response } from 'express';
 import { RestaurantService } from '../services/restaurant.service.js';
-import { CreateRestaurantDTO, UpdateRestaurantDTO, RestaurantWithReviewsDTO, SimpleRestaurantDTO } from '../dto/restaurant.dto.js';
+import { CreateRestaurantDTO, UpdateRestaurantDTO, RestaurantWithVisitsDTO, SimpleRestaurantDTO } from '../dto/restaurant.dto.js';
 
 export class RestaurantController {
   private service = new RestaurantService();
 
   getAll = async (req: Request, res: Response): Promise<void> => {
     try {
-      const restaurants: RestaurantWithReviewsDTO[] = await this.service.getAll();
+      const restaurants: RestaurantWithVisitsDTO[] = await this.service.getAll();
       res.json(restaurants);
     } catch (error) {
+      console.error('Error in getAll:', error);
       res.status(500).json({ error: 'Internal Server Error' });
     }
   };
@@ -17,9 +18,10 @@ export class RestaurantController {
   getById = async (req: Request, res: Response): Promise<void> => {
     try {
       const { id } = req.params;
-      const restaurant: RestaurantWithReviewsDTO = await this.service.getById(Number(id));
+      const restaurant: RestaurantWithVisitsDTO = await this.service.getById(Number(id));
       res.json(restaurant);
     } catch (error: any) {
+      console.error('Error in getById:', error);
       const status = error.message === 'Restaurant not found' ? 404 : 500;
       res.status(status).json({ error: error.message });
     }
@@ -31,6 +33,7 @@ export class RestaurantController {
       const restaurant: SimpleRestaurantDTO = await this.service.create(data);
       res.status(201).json(restaurant);
     } catch (error) {
+      console.error('Error in create restaurant:', error);
       res.status(500).json({ error: 'Error creating restaurant' });
     }
   };
@@ -42,6 +45,7 @@ export class RestaurantController {
       const restaurant: SimpleRestaurantDTO = await this.service.update(Number(id), data);
       res.json(restaurant);
     } catch (error: any) {
+      console.error('Error in update restaurant:', error);
       const status = error.message === 'Restaurant not found' ? 404 : 500;
       res.status(status).json({ error: error.message });
     }
@@ -53,6 +57,7 @@ export class RestaurantController {
       await this.service.delete(Number(id));
       res.status(204).send();
     } catch (error: any) {
+      console.error('Error in delete restaurant:', error);
       const status = error.message === 'Restaurant not found' ? 404 : 500;
       res.status(status).json({ error: error.message });
     }

@@ -7,7 +7,7 @@ export interface SimpleReviewerDTO {
 export interface SimpleReviewDTO {
   id: number;
   reviewerId: number;
-  restaurantId: number;
+  visitId: number; // Changed from restaurantId
   foodRating: number;
   beverageRating: number;
   serviceRating: number;
@@ -19,6 +19,13 @@ export interface SimpleReviewDTO {
 export interface SimpleRestaurantDTO {
   id: number;
   name: string;
+  address: string;
   createdAt: Date;
   updatedAt: Date;
+}
+
+export interface SimpleVisitDTO {
+  id: number;
+  visitedAt: Date;
+  restaurantId: number;
 }

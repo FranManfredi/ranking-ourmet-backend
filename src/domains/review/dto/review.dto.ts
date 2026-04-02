@@ -1,15 +1,15 @@
-import { SimpleReviewerDTO, SimpleReviewDTO, SimpleRestaurantDTO } from '../../shared/dto/common.dto.js';
+import { SimpleReviewerDTO, SimpleReviewDTO, SimpleVisitDTO } from '../../shared/dto/common.dto.js';
 
 export { SimpleReviewDTO };
 
 export interface ReviewWithDetailsDTO extends SimpleReviewDTO {
   reviewer: SimpleReviewerDTO;
-  restaurant: SimpleRestaurantDTO;
+  visit: SimpleVisitDTO;
 }
 
 export interface CreateReviewDTO {
   reviewerId: number;
-  restaurantId: number;
+  visitId: number; // Changed from restaurantId
   foodRating?: number;
   beverageRating?: number;
   serviceRating?: number;

@@ -6,7 +6,7 @@ export class ReviewRepository {
     return prisma.review.findMany({
       include: {
         reviewer: true,
-        restaurant: true
+        visit: true
       }
     });
   }
@@ -16,14 +16,22 @@ export class ReviewRepository {
       where: { id },
       include: {
         reviewer: true,
-        restaurant: true
+        visit: true
       }
     });
   }
 
   async create(data: CreateReviewDTO) {
     return prisma.review.create({
-      data
+      data: {
+        reviewerId: data.reviewerId,
+        visitId: data.visitId,
+        foodRating: data.foodRating,
+        beverageRating: data.beverageRating,
+        serviceRating: data.serviceRating,
+        valueRating: data.valueRating,
+        ambianceRating: data.ambianceRating
+      }
     });
   }
 
