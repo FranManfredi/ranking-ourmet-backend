@@ -1,4 +1,4 @@
-import { SimpleVisitDTO, SimpleRestaurantDTO, SimpleReviewDTO } from '../../shared/dto/common.dto.js';
+import { SimpleVisitDTO, SimpleRestaurantDTO, SimpleReviewDTO } from '../../auth/dto/common.dto.js';
 
 export { SimpleVisitDTO };
 

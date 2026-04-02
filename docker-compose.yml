@@ -25,6 +25,12 @@ services:
       DATABASE_URL: postgresql://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}
       PORT: ${PORT}
       NODE_ENV: production
+      # Better Auth
+      BETTER_AUTH_SECRET: ${BETTER_AUTH_SECRET}
+      BETTER_AUTH_BASE_URL: ${BETTER_AUTH_BASE_URL}
+#      # Google OAuth (opcional)
+#      GOOGLE_CLIENT_ID: ${GOOGLE_CLIENT_ID}
+#      GOOGLE_CLIENT_SECRET: ${GOOGLE_CLIENT_SECRET}
     depends_on:
       db:
         condition: service_healthy

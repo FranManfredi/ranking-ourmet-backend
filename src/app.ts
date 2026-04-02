@@ -4,13 +4,16 @@ import reviewerRoutes from './domains/reviewer/routes/reviewer.routes.js';
 import reviewRoutes from './domains/review/routes/review.routes.js';
 import visitRoutes from './domains/visit/routes/visit.routes.js';
 import { setupSwagger } from './lib/swagger.js';
+import { auth } from "./lib/auth.js";
+import { toNodeHandler } from "better-auth/node";
+import { isAuthenticated } from "./domains/auth/middleware/auth.middleware.js";
 
 const app: Express = express();
 
-// Middleware
+// Middleware base
 app.use(express.json());
 
-// Simple request logger
+// Logger de peticiones
 app.use((req, res, next) => {
   console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
   if (req.body && Object.keys(req.body).length > 0) {
@@ -19,16 +22,20 @@ app.use((req, res, next) => {
   next();
 });
 
-// Basic Route
+// 1. Endpoints de Autenticación (Better Auth)
+// Según la documentación oficial, esto maneja automáticamente /api/auth/*
+app.all("/api/auth{*splat}", toNodeHandler(auth));
+
+// Ruta de bienvenida (Pública)
 app.get('/', (req: Request, res: Response) => {
   res.json({ message: 'Welcome to Ranking Gourmet API' });
 });
 
-// Routes
-app.use('/api/restaurants', restaurantRoutes);
-app.use('/api/reviewers', reviewerRoutes);
-app.use('/api/reviews', reviewRoutes);
-app.use('/api/visits', visitRoutes);
+// 2. Rutas Protegidas (Aplicamos el middleware aquí para proteger todos los dominios)
+app.use('/api/restaurants', isAuthenticated, restaurantRoutes);
+app.use('/api/reviewers', isAuthenticated, reviewerRoutes);
+app.use('/api/reviews', isAuthenticated, reviewRoutes);
+app.use('/api/visits', isAuthenticated, visitRoutes);
 
 setupSwagger(app);
 

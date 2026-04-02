@@ -17,9 +17,13 @@ const controller = new ReviewController();
  *   get:
  *     summary: Retrieve a list of reviews
  *     tags: [Reviews]
+ *     security:
+ *       - cookieAuth: []
  *     responses:
  *       200:
  *         description: A list of reviews.
+ *       401:
+ *         description: Unauthorized
  */
 router.get('/', controller.getAll);
 
@@ -29,6 +33,8 @@ router.get('/', controller.getAll);
  *   get:
  *     summary: Get a review by ID
  *     tags: [Reviews]
+ *     security:
+ *       - cookieAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -38,6 +44,8 @@ router.get('/', controller.getAll);
  *     responses:
  *       200:
  *         description: Review data
+ *       401:
+ *         description: Unauthorized
  */
 router.get('/:id', controller.getById);
 
@@ -47,6 +55,8 @@ router.get('/:id', controller.getById);
  *   post:
  *     summary: Create a new review
  *     tags: [Reviews]
+ *     security:
+ *       - cookieAuth: []
  *     requestBody:
  *       required: true
  *       content:
@@ -67,6 +77,8 @@ router.get('/:id', controller.getById);
  *     responses:
  *       201:
  *         description: Created
+ *       401:
+ *         description: Unauthorized
  */
 router.post('/', controller.create);
 
@@ -76,6 +88,8 @@ router.post('/', controller.create);
  *   patch:
  *     summary: Update a review
  *     tags: [Reviews]
+ *     security:
+ *       - cookieAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -96,6 +110,8 @@ router.post('/', controller.create);
  *     responses:
  *       200:
  *         description: Updated
+ *       401:
+ *         description: Unauthorized
  */
 router.patch('/:id', controller.update);
 
@@ -105,6 +121,8 @@ router.patch('/:id', controller.update);
  *   delete:
  *     summary: Delete a review
  *     tags: [Reviews]
+ *     security:
+ *       - cookieAuth: []
  *     parameters:
  *       - in: path
  *         name: id
@@ -114,6 +132,8 @@ router.patch('/:id', controller.update);
  *     responses:
  *       204:
  *         description: Deleted
+ *       401:
+ *         description: Unauthorized
  */
 router.delete('/:id', controller.delete);
 

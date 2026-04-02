@@ -1,4 +1,4 @@
-import { SimpleReviewerDTO, SimpleReviewDTO } from '../../shared/dto/common.dto.js';
+import { SimpleReviewerDTO, SimpleReviewDTO } from '../../auth/dto/common.dto.js';
 
 export { SimpleReviewerDTO };
 
@@ -9,6 +9,7 @@ export interface ReviewerWithReviewsDTO extends SimpleReviewerDTO {
 export interface CreateReviewerDTO {
   name: string;
   surname: string;
+  userId: string;
 }
 
 export interface UpdateReviewerDTO {

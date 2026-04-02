@@ -2,12 +2,13 @@ export interface SimpleReviewerDTO {
   id: number;
   name: string;
   surname: string;
+  userId: string;
 }
 
 export interface SimpleReviewDTO {
   id: number;
   reviewerId: number;
-  visitId: number; // Changed from restaurantId
+  visitId: number;
   foodRating: number;
   beverageRating: number;
   serviceRating: number;
