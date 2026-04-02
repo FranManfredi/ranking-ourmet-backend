@@ -4,9 +4,9 @@ import reviewerRoutes from './domains/reviewer/routes/reviewer.routes.js';
 import reviewRoutes from './domains/review/routes/review.routes.js';
 import visitRoutes from './domains/visit/routes/visit.routes.js';
 import { setupSwagger } from './lib/swagger.js';
-import { auth } from "./lib/auth.js";
+import { auth } from "./lib/auth/auth.js";
 import { toNodeHandler } from "better-auth/node";
-import { isAuthenticated } from "./domains/auth/middleware/auth.middleware.js";
+import { isAuthenticated } from "./lib/auth/middleware/auth.middleware.js";
 
 const app: Express = express();
 

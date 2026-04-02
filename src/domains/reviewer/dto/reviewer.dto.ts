@@ -1,4 +1,4 @@
-import { SimpleReviewerDTO, SimpleReviewDTO } from '../../auth/dto/common.dto.js';
+import { SimpleReviewerDTO, SimpleReviewDTO } from '../../common/dto/common.dto.js';
 
 export { SimpleReviewerDTO };
 

@@ -1,5 +1,5 @@
-import { SimpleRestaurantDTO } from '../../auth/dto/common.dto.js';
-import { SimpleVisitDTO } from '../../auth/dto/common.dto.js';
+import { SimpleRestaurantDTO } from '../../common/dto/common.dto.js';
+import { SimpleVisitDTO } from '../../common/dto/common.dto.js';
 
 export { SimpleRestaurantDTO };
 
