@@ -10,7 +10,7 @@ WORKDIR /app
 COPY package*.json ./
 COPY prisma ./prisma/
 # Copiamos el config de prisma necesario para el generate en v7
-COPY prisma.config.js ./ 
+COPY ./prisma/prisma.config.js ./
 
 RUN npm install
 

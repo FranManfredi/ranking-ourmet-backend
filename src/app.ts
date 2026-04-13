@@ -7,6 +7,7 @@ import { setupSwagger } from './lib/swagger.js';
 import { auth } from "./lib/auth/auth.js";
 import { toNodeHandler } from "better-auth/node";
 import { isAuthenticated } from "./lib/auth/middleware/auth.middleware.js";
+import { isAdmin } from "./lib/auth/middleware/admin.middleware.js";
 
 const app: Express = express();
 
@@ -23,8 +24,11 @@ app.use((req, res, next) => {
 });
 
 // 1. Endpoints de Autenticación (Better Auth)
-// Según la documentación oficial, esto maneja automáticamente /api/auth/*
-app.all("/api/auth{*splat}", toNodeHandler(auth));
+// Solo los administradores pueden registrar gente nueva
+app.all("/api/auth/sign-up/*path", isAdmin, toNodeHandler(auth));
+
+// El resto de los endpoints de auth (sign-in, session, etc.) son públicos o manejados internamente
+app.all("/api/auth/*path", toNodeHandler(auth));
 
 // Ruta de bienvenida (Pública)
 app.get('/', (req: Request, res: Response) => {

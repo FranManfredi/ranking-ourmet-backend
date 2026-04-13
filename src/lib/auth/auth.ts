@@ -1,5 +1,6 @@
 import { betterAuth } from "better-auth";
 import { prismaAdapter } from "better-auth/adapters/prisma";
+import { admin } from "better-auth/plugins";
 import prisma from "../prisma.js";
 
 export const auth = betterAuth({
@@ -7,8 +8,11 @@ export const auth = betterAuth({
         provider: "postgresql",
     }),
     
-    // El plugin emailPassword es necesario para habilitar sign-up y sign-in con correo
-    emailAndPassword: {
+    plugins: [
+        admin()
+    ],
+
+    emailAndPassword:{
         enabled: true,
     },
 
@@ -18,6 +22,12 @@ export const auth = betterAuth({
                 type: "string",
                 required: false,
                 input: true
+            },
+            role: {
+                type: "string",
+                required: false,
+                input: false, // Evita que los usuarios se asignen roles al registrarse
+                defaultValue: "user"
             }
         }
     },
@@ -42,7 +52,6 @@ export const auth = betterAuth({
 
     baseURL: process.env.BETTER_AUTH_BASE_URL || "http://localhost:3000",
     
-    // Configuración para entornos con proxy (Docker, Nginx, Vercel, etc.)
     trustHost: true,
     trustedProxies: ["loopback"],
     rateLimit: {
