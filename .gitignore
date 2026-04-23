@@ -4,4 +4,4 @@ dist/
 .idea/
 *.log
 
-/src/generated/prisma
+generated
