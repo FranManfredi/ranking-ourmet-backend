@@ -1,5 +1,6 @@
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
 }
 
 datasource db {
@@ -10,6 +11,8 @@ model Restaurant {
   id        Int      @id @default(autoincrement())
   name      String
   address   String
+  city      String   @default("MAR DEL PLATA")
+  tags      String[]
   visits    Visit[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

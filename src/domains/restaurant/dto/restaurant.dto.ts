@@ -10,9 +10,13 @@ export interface RestaurantWithVisitsDTO extends SimpleRestaurantDTO {
 export interface CreateRestaurantDTO {
   name: string;
   address: string;
+  city?: string;
+  tags?: string[];
 }
 
 export interface UpdateRestaurantDTO {
   name?: string;
   address?: string;
+  city?: string;
+  tags?: string[];
 }

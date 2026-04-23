@@ -31,6 +31,24 @@ router.get('/', controller.getAll);
 
 /**
  * @swagger
+ * /api/restaurants/GetAllRestaurants:
+ *   get:
+ *     summary: Retrieve all restaurants
+ *     tags: [Restaurants]
+ *     responses:
+ *       200:
+ *         description: A list of restaurants.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 $ref: '#/components/schemas/Restaurant'
+ */
+router.get('/GetAllRestaurants', controller.getAll);
+
+/**
+ * @swagger
  * /api/restaurants/{id}:
  *   get:
  *     summary: Get a restaurant by ID
@@ -74,6 +92,13 @@ router.get('/:id', controller.getById);
  *                 type: string
  *               address:
  *                 type: string
+ *               city:
+ *                 type: string
+ *                 default: MAR DEL PLATA
+ *               tags:
+ *                 type: array
+ *                 items:
+ *                   type: string
  *     responses:
  *       201:
  *         description: Created
@@ -102,6 +127,12 @@ router.post('/', controller.create);
  *               type: string
  *             address:
  *               type: string
+ *             city:
+ *               type: string
+ *             tags:
+ *               type: array
+ *               items:
+ *                 type: string
  *     responses:
  *       200:
  *         description: Updated

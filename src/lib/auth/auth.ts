@@ -53,7 +53,8 @@ export const auth = betterAuth({
     baseURL: process.env.BETTER_AUTH_BASE_URL || "http://localhost:3000",
     
     trustHost: true,
-    trustedProxies: ["loopback"],
+    trustedProxies: ["loopback", "localhost:3001"],
+    trustedOrigins: ["http://localhost:3001"],
     rateLimit: {
         enabled: false
     }

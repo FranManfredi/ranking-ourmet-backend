@@ -24,6 +24,11 @@ const options: swaggerJsdoc.Options = {
             id: { type: 'integer' },
             name: { type: 'string' },
             address: { type: 'string' },
+            city: { type: 'string', default: 'MAR DEL PLATA' },
+            tags: {
+              type: 'array',
+              items: { type: 'string' },
+            },
             createdAt: { type: 'string', format: 'date-time' },
             updatedAt: { type: 'string', format: 'date-time' },
           },

@@ -6,11 +6,15 @@ RUN apk add --no-cache libc6-compat
 
 WORKDIR /app
 
+# Prisma 7 necesita DATABASE_URL al cargar prisma.config.ts durante generate.
+# En build alcanza con una URL placeholder; la real se inyecta en runtime.
+ENV DATABASE_URL=postgresql://placeholder:placeholder@localhost:5432/placeholder
+
 # Instalar dependencias
 COPY package*.json ./
 COPY prisma ./prisma/
 # Copiamos el config de prisma necesario para el generate en v7
-COPY ./prisma/prisma.config.js ./
+COPY prisma.config.ts ./
 
 RUN npm install
 
@@ -32,7 +36,7 @@ COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/dist ./dist
 COPY --from=builder /app/prisma ./prisma
-COPY --from=builder /app/prisma.config.js ./prisma.config.js
+COPY --from=builder /app/prisma.config.ts ./prisma.config.ts
 
 EXPOSE 3000
 

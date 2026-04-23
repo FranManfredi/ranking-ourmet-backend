@@ -21,6 +21,8 @@ export interface SimpleRestaurantDTO {
   id: number;
   name: string;
   address: string;
+  city: string;
+  tags: string[];
   createdAt: Date;
   updatedAt: Date;
 }
