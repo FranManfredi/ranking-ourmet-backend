@@ -27,4 +27,8 @@ export class ReviewService {
     await this.getById(id);
     await this.repository.delete(id);
   }
+
+  async getByVisitId(number: number)  : Promise<ReviewWithDetailsDTO[]> {
+    return await this.repository.findByVisitId(number) as unknown as Promise<ReviewWithDetailsDTO[]>;
+  }
 }

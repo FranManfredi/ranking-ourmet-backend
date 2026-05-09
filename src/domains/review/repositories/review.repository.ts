@@ -47,4 +47,14 @@ export class ReviewRepository {
       where: { id }
     });
   }
+
+  async findByVisitId(number: number) {
+    return prisma.review.findMany({
+      where: { visitId: number },
+      include: {
+        reviewer: true,
+        visit: true
+      }
+    });
+  }
 }

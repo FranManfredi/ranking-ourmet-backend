@@ -57,4 +57,15 @@ export class ReviewController {
       res.status(status).json({ error: error.message });
     }
   };
+
+  getByVisitId = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { visitId } = req.params;
+      const reviews: ReviewWithDetailsDTO[] = await this.service.getByVisitId(Number(visitId));
+      res.json(reviews);
+    } catch (error: any) {
+      const status = error.message === 'Reviews not found for this visit' ? 404 : 500;
+      res.status(status).json({ error: error.message });
+    }
+  };
 }

@@ -51,6 +51,28 @@ router.get('/:id', controller.getById);
 
 /**
  * @swagger
+ * /api/reviews/visit/{visitId}:
+ *   get:
+ *     summary: Get reviews by visit ID
+ *     tags: [Reviews]
+ *     security:
+ *       - cookieAuth: []
+ *     parameters:
+ *       - in: path
+ *         name: visitId
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: List of reviews for the visit
+ *       401:
+ *         description: Unauthorized
+ */
+router.get('/visit/:visitId', controller.getByVisitId);
+
+/**
+ * @swagger
  * /api/reviews:
  *   post:
  *     summary: Create a new review

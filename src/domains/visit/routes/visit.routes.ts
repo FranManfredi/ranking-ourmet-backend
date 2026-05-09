@@ -39,7 +39,7 @@ router.get('/', controller.getAll);
  *       200:
  *         description: A list of visits for the restaurant.
  */
-router.get('/restaurant/:id', controller.gatAllByRestaurantId);``
+router.get('/restaurant/:restaurantId', controller.gatAllByRestaurantId);``
 
 /**
  * @swagger
