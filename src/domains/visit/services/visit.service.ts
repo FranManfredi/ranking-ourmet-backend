@@ -27,4 +27,8 @@ export class VisitService {
     await this.getById(id);
     await this.repository.delete(id);
   }
+
+  async getAllByRestaurantId(number: number) {
+    return this.repository.findAllByRestaurantId(number) as unknown as Promise<VisitWithDetailsDTO[]>;
+  }
 }

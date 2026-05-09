@@ -25,6 +25,24 @@ router.get('/', controller.getAll);
 
 /**
  * @swagger
+ * /api/visits/restaurant/{id}:
+ *   get:
+ *     summary: Retrieve visits for a specific restaurant
+ *     tags: [Visits]
+ *     parameters:
+ *       - in: path
+ *         name: id
+ *         required: true
+ *         schema:
+ *           type: integer
+ *     responses:
+ *       200:
+ *         description: A list of visits for the restaurant.
+ */
+router.get('/restaurant/:id', controller.gatAllByRestaurantId);``
+
+/**
+ * @swagger
  * /api/visits/{id}:
  *   get:
  *     summary: Get a visit by ID

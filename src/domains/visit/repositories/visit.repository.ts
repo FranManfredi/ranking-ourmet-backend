@@ -44,4 +44,14 @@ export class VisitRepository {
       where: { id }
     });
   }
+
+  async findAllByRestaurantId(number: number) {
+    return prisma.visit.findMany({
+      where: { restaurantId: number },
+      include: {
+        restaurant: true,
+        reviews: true
+      }
+    });
+  }
 }

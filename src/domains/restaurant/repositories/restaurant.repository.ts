@@ -21,14 +21,24 @@ export class RestaurantRepository {
 
   async create(data: CreateRestaurantDTO) {
     return prisma.restaurant.create({
-      data
+      data: {
+        name: data.name.toUpperCase(),
+        address: data.address.toUpperCase(),
+        city: data.city?.toUpperCase(),
+        tags: data.tags
+      }
     });
   }
 
   async update(id: number, data: UpdateRestaurantDTO) {
     return prisma.restaurant.update({
       where: { id },
-      data
+      data: {
+        name: data.name?.toUpperCase(),
+        address: data.address?.toUpperCase(),
+        city: data.city?.toUpperCase(),
+        tags: data.tags
+      }
     });
   }
 

@@ -15,6 +15,17 @@ export class VisitController {
     }
   };
 
+  gatAllByRestaurantId = async (req: Request, res: Response): Promise<void> => {
+    try {
+      const { restaurantId } = req.params;
+      const visits: VisitWithDetailsDTO[] = await this.service.getAllByRestaurantId(Number(restaurantId));
+      res.json(visits);
+    } catch (error) {
+      console.error('Error in getAllByRestaurantId visits:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  };
+
   getById = async (req: Request, res: Response): Promise<void> => {
     try {
       const { id } = req.params;
