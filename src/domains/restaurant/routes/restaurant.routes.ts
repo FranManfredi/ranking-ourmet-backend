@@ -117,22 +117,23 @@ router.post('/', controller.create);
  *         schema:
  *           type: integer
  *         required: true
- *       - in: body
- *         name: restaurant
- *         description: The restaurant to update
- *         schema:
- *           type: object
- *           properties:
- *             name:
- *               type: string
- *             address:
- *               type: string
- *             city:
- *               type: string
- *             tags:
- *               type: array
- *               items:
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               name:
  *                 type: string
+ *               address:
+ *                 type: string
+ *               city:
+ *                 type: string
+ *               tags:
+ *                 type: array
+ *                 items:
+ *                   type: string
  *     responses:
  *       200:
  *         description: Updated

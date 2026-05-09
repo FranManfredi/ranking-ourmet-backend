@@ -1,6 +1,24 @@
 import swaggerJsdoc from 'swagger-jsdoc';
 import swaggerUi from 'swagger-ui-express';
 import { Express } from 'express';
+import fs from 'node:fs';
+import path from 'node:path';
+
+const apiDocGlobs = (() => {
+  const srcEntry = path.resolve(process.cwd(), 'src/domains/restaurant/routes/restaurant.routes.ts');
+  const distSrcEntry = path.resolve(process.cwd(), 'dist/src/domains/restaurant/routes/restaurant.routes.js');
+  const distEntry = path.resolve(process.cwd(), 'dist/domains/restaurant/routes/restaurant.routes.js');
+
+  if (fs.existsSync(srcEntry)) {
+    return [path.resolve(process.cwd(), 'src/**/*.routes.ts')];
+  }
+
+  if (fs.existsSync(distSrcEntry)) {
+    return [path.resolve(process.cwd(), 'dist/src/**/*.routes.js')];
+  }
+
+  return [path.resolve(process.cwd(), 'dist/**/*.routes.js')];
+})();
 
 const options: swaggerJsdoc.Options = {
   definition: {
@@ -66,16 +84,15 @@ const options: swaggerJsdoc.Options = {
       },
     },
   },
-  // Path to the API docs
-  apis: [
-    './src/domains/**/*.routes.ts',
-    './dist/domains/**/*.routes.js'
-  ],
+  apis: apiDocGlobs,
 };
 
 const specs = swaggerJsdoc(options);
 
 export const setupSwagger = (app: Express) => {
+  app.get('/api-docs.json', (_req, res) => {
+    res.json(specs);
+  });
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(specs));
   console.log('Swagger docs available at http://localhost:3000/api-docs');
 };
